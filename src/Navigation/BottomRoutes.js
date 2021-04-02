@@ -14,7 +14,6 @@ function BottomRoutes() {
     return (
         <BottomTab.Navigator tabBarOptions={{
             activeTintColor: colors.tabFocused,
-
         }}
         >
             <BottomTab.Screen name={navigationStrings.TOP_ROUTES} component={TopRoutes} options={{

@@ -70,15 +70,15 @@ export default class Home extends Component {
     render() {
         const {isLoading, userPosts}=this.state;
         return (
-           <WrapperContainer bgColor={colors.white} statusBarColor={colors.themeColor}>
-               <Header>
+           <WrapperContainer  statusBarColor={colors.themeColor}>
+               <Header bgColor={colors.white}>
                <View style={styles.homeHeader}>
                 <Text style={styles.screenNameTxt}>{strings.YOUR_FEED}</Text>
                </View>
                </Header>
                <FlatList
                     data={userPosts}
-                    numColumns={2}
+               
                     ListFooterComponent={()=><View style={{height:30}}><Loader isLoading={isLoading}/></View>}
                     keyExtractor={(item, index) => index.toString()}
                     renderItem={({item}) => <UserPosts data={item}/>}

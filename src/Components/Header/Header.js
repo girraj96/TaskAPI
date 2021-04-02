@@ -10,8 +10,6 @@ export default function Header(props) {
             height:55,
             backgroundColor:bgColor,
             alignItems:"center",
-            justifyContent:"center",
-            flexDirection:"row"
         }}>
             {children}
         </View>

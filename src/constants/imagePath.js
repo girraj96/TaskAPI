@@ -8,6 +8,10 @@ export default{
     back_arrow:require('../assets/images/back_arrow.png'),
     verify_otp_img:require('../assets/images/verify_otp_Icon.png'),
     searchIcon:require('../assets/images/searchIcon.png'),
+    logout:require('../assets/images/logout.png'),
+    location_nearby:require('../assets/images/location_nearby.png'),
+    right_move:require('../assets/images/right_move.png'),
+
     
 
 

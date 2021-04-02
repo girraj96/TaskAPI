@@ -6,7 +6,7 @@ import store from './src/redux/store'
 import { getUserData } from './src/utils/utils'
 import { Provider } from 'react-redux'
 import types from './src/redux/types'
-
+import {requestUserPermission, unsubscribe} from "./src/utils/notificationServices";
 
 
 
@@ -25,6 +25,10 @@ export default class App extends Component {
       }
     })
     SplashScreen.hide();
+    requestUserPermission();
+    unsubscribe();
+
+
   }
 
   render() {

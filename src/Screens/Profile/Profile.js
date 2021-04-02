@@ -1,12 +1,27 @@
 import React, { Component } from 'react'
-import { Text, View } from 'react-native'
+import { Image, Text, TouchableOpacity, View } from 'react-native'
+import Header from '../../Components/Header/Header'
+import WrapperContainer from '../../Components/WrapperContainer/WrapperContainer'
+import imagePath from '../../constants/imagePath'
+import commonStyles from '../../styles/commonStyles'
+import actions from "../../redux/actions"
 
 export default class Profile extends Component {
+    _onLogout=()=>{
+        actions.onLogout();
+    }
     render() {
         return (
-            <View>
-                <Text> This is Profile </Text>
-            </View>
+         <WrapperContainer>
+             <Header>
+                 <View style={{height:"100%",width:"100%", flexDirection:"row",alignItems:"center"}}>
+                    <Text style={{...commonStyles.fontBold22, marginHorizontal:10}}>Profile</Text>
+                    <TouchableOpacity style={{ position:"absolute", right:10}} onPress={this._onLogout}>
+                    <Image style={{height:30, width:30, resizeMode:"contain"}} source={imagePath.logout}/>
+                    </TouchableOpacity>
+                 </View>
+             </Header>
+         </WrapperContainer>
         )
     }
 }

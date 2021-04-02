@@ -13,4 +13,5 @@ export default {
     NOTHING_TO_SHOW:"Nothing to show...",
     SEARCH_HERE:"Search here...",
     YOUR_FEED:"Your Feed",
+    FIND_NEARBY_FRIENDS:"Find near by friends"
 }

@@ -12,8 +12,8 @@ export default function counterReducer(state=initialState, action){
             const userData={...action.payload};
             return{...state,userData}
         
-        // case types.ON_LOGOUT:
-        //     return{...state, userData:{}}
+        case types.LOGOUT:
+            return{...state, userData:{}}
             
         default:
              return {...state}

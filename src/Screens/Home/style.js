@@ -32,5 +32,30 @@ export default StyleSheet.create({
         elevation:1,
         borderWidth:0.4,
         borderColor:colors.lightGrey,
+    },
+    nearByButtonView:{
+        width:"60%",
+        flexDirection:"row",
+        borderWidth:0.4,
+        borderColor:colors.textGrey,
+        marginVertical:5,
+        paddingVertical:5,
+        alignItems:"center",
+        borderTopRightRadius:5,
+        borderBottomRightRadius:5
+    },
+    locationImg:{
+        height:30,
+        width:30,
+        resizeMode:"contain", 
+        tintColor:colors.themeColor,
+    },
+    rightMove:{
+        height:20,
+        width:15,
+        resizeMode:"contain",
+        position:"absolute",
+        right:10
+        
     }
 })

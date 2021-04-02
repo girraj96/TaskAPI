@@ -11,9 +11,8 @@ import styles from '../Home/style'
 import SimpleTxtInput from '../../Components/SimpleTxtInput/SimpleTxtInput'
 import imagePath from '../../constants/imagePath'
 import strings from '../../constants/lang'
-import commonStyles from '../../styles/commonStyles'
 import ListEmptyComp from '../../Components/ListEmptyComp/ListEmptyComp'
-// import {getCurrentLocation} from "../../utils/helperFunctions"
+import {showError} from "../../utils/helperFunctions"
 
 
 export default class Charts extends Component {
@@ -27,12 +26,13 @@ export default class Charts extends Component {
     _onSearch = (value) => {
         const {searchTxts}=this.state
         this.setState({
+            isLoading: true,
             searchTxts: value,
-            isLoading: true
         })
         if (this.isSearchUsers) {
             clearTimeout(this.isSearchUsers);
         }
+
         this.isSearchUsers = setTimeout(() => {
             actions.searchUsers(searchTxts)
                 .then((res) =>
@@ -46,8 +46,9 @@ export default class Charts extends Component {
                         isLoading: false
                     }));
                 }, 500)
+    }
 
-        // getCurrentLocation().then((res)=>alert(res)).catch((error)=>console.log(error))
+    _findNearBy=()=>{
 
     }
 
@@ -60,11 +61,16 @@ export default class Charts extends Component {
                         <SimpleTxtInput placeholder={strings.SEARCH_HERE} _onSearch={this._onSearch} />
                         <Image source={imagePath.searchIcon} style={styles.searchIcon} />
                     </View>
+                  
                 </Header>
+                <TouchableOpacity style={styles.nearByButtonView} onPress={this._findNearBy}>
+                        <Image source={imagePath.location_nearby} style={styles.locationImg}/>
+                        <Text>{strings.FIND_NEARBY_FRIENDS}</Text>
+                        <Image source={imagePath.right_move} style={styles.rightMove}/>
+                    </TouchableOpacity>
                 <View style={{ flex: 1}}>
                     <FlatList
                         data={userPosts}
-                        numColumns={2}
                         ListFooterComponent={() => <View style={{ height: 30 }}><Loader isLoading={isLoading} /></View>}
                         keyExtractor={(item, index) => index.toString()}
                         renderItem={({ item }) => <UserPosts data={item} />}

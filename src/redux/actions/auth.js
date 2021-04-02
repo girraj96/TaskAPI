@@ -30,3 +30,11 @@ export function onSendOTP(data = {}) {
       })
     })
   }
+
+  export const onLogout = () => {
+    clearUserData();
+    dispatch({
+      type: types.LOGOUT,
+    })
+  
+  }
