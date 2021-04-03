@@ -1,15 +1,17 @@
 import React, { Component } from 'react'
-import { Image, Text, TouchableOpacity, View,FlatList, RefreshControl} from 'react-native'
-import Header from '../../Components/Header/Header'
-import Loader from '../../Components/Loader/Loader'
-import WrapperContainer from '../../Components/WrapperContainer/WrapperContainer'
-import imagePath from '../../constants/imagePath'
+import {Text, View,FlatList, RefreshControl} from 'react-native'
 import colors from '../../styles/colors'
-import styles from './style'
+import styles from './styles'
 import actions from "../../redux/actions"
-import UserPosts from '../../Components/UserPosts'
 import { showMessage } from 'react-native-flash-message'
 import strings from '../../constants/lang'
+
+//components
+import UserPosts from '../../Components/UserPosts'
+import WrapperContainer from '../../Components/WrapperContainer'
+import Loader from '../../Components/Loader'
+import Header from '../../Components/Header'
+
 
 
 export default class Home extends Component {
@@ -68,7 +70,7 @@ export default class Home extends Component {
     }
 
     render() {
-        const {isLoading, userPosts}=this.state;
+        const {isLoading, userPosts,isRefreshing}=this.state;
         return (
            <WrapperContainer  statusBarColor={colors.themeColor}>
                <Header bgColor={colors.white}>
@@ -83,9 +85,10 @@ export default class Home extends Component {
                     keyExtractor={(item, index) => index.toString()}
                     renderItem={({item}) => <UserPosts data={item}/>}
                     onEndReached={this._onEndReached}
+                    showsVerticalScrollIndicator={false}
                     onEndReachedThreshold={0.9}  
                     refreshControl={<RefreshControl 
-                                        refreshing={this.state.isRefreshing}
+                                        refreshing={isRefreshing}
                                         onRefresh={this.handleRefresh}/>}    
                 />
            </WrapperContainer>

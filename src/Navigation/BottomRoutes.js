@@ -13,7 +13,7 @@ const BottomTab = createBottomTabNavigator();
 function BottomRoutes() {
     return (
         <BottomTab.Navigator tabBarOptions={{
-            activeTintColor: colors.tabFocused,
+            activeTintColor: colors.themeColor,
         }}
         >
             <BottomTab.Screen name={navigationStrings.TOP_ROUTES} component={TopRoutes} options={{
@@ -23,7 +23,7 @@ function BottomRoutes() {
                         style={{
                             width: size,
                             height: size,
-                            tintColor: focused ? colors.tabFocused : colors.tabUnFocused,
+                            tintColor: focused ? colors.themeColor : colors.tabUnFocused,
                         }}
                     />
                 )
@@ -36,7 +36,7 @@ function BottomRoutes() {
                         style={{
                             width: size,
                             height: size,
-                            tintColor: focused ? colors.tabFocused : colors.tabUnFocused
+                            tintColor: focused ? colors.themeColor : colors.tabUnFocused
 
                         }}
                     />
@@ -49,7 +49,7 @@ function BottomRoutes() {
                         style={{
                             width: size,
                             height: size,
-                            tintColor: focused ? colors.tabFocused : colors.tabUnFocused
+                            tintColor: focused ? colors.themeColor : colors.tabUnFocused
                         }}
                     />
                 )

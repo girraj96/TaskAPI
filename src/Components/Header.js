@@ -1,7 +1,6 @@
 import React from 'react'
-import { View,StyleSheet } from 'react-native'
-import colors from '../../styles/colors';
-import {scale, verticalScale} from "../../styles/responsiveSize";
+import { View, StyleSheet} from 'react-native'
+import colors from '../styles/colors'
 
 export default function Header(props) {
     const {children, bgColor}=props;
@@ -9,7 +8,7 @@ export default function Header(props) {
         <View style={{   
             height:55,
             backgroundColor:bgColor,
-            alignItems:"center",
+            justifyContent:"center"
         }}>
             {children}
         </View>

@@ -8,7 +8,7 @@ export default StyleSheet.create({
         width:30,
         resizeMode:"contain",
         tintColor:colors.themeColor,
-        marginHorizontal:10
+        marginHorizontal:10,
     },
     mainView:{
         flex: 1, 

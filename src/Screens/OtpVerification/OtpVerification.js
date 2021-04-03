@@ -1,18 +1,21 @@
 import React, { Component } from 'react'
 import { Image, Text, TouchableOpacity, View } from 'react-native'
-import BottomBorderTextInput from '../../Components/BottomBorderTextInput/BottomBorderTextInput'
-import Header from '../../Components/Header/Header'
-import styles from './style'
-import WrapperContainer from '../../Components/WrapperContainer/WrapperContainer'
+
+import styles from './styles'
 import imagePath from '../../constants/imagePath'
 import colors from '../../styles/colors'
-import SimpleButton from '../../Components/SimpleButton/SimpleButton'
-import Loader from '../../Components/Loader/Loader'
+import Loader from '../../Components/Loader'
 import navigationStrings from '../../constants/navigationStrings'
 import actions from "../../redux/actions"
 import {showMessage} from "react-native-flash-message"
 import strings from '../../constants/lang'
- 
+
+//components
+import SimpleButton from '../../Components/SimpleButton'
+import WrapperContainer from '../../Components/WrapperContainer'
+import BottomBorderTextInput from '../../Components/BottomBorderTextInput'
+import Header from '../../Components/Header'
+
 export default class OtpVerification extends Component {
 
     state={
@@ -64,7 +67,7 @@ export default class OtpVerification extends Component {
     }
 
     render() {
-        const {isLoading, userMobileNumber}=this.state;
+        const {isLoading}=this.state;
         return (
             <WrapperContainer statusBarColor={colors.themeColor}>
                 <Header bgColor={colors.white}>
@@ -90,15 +93,15 @@ export default class OtpVerification extends Component {
              
                 <View style={styles.continueBtnMainView}>
                 <SimpleButton bgColor={colors.themeColor} borderColor={colors.themeColor} _onSimpleButton={this._onSimpleButton}>
-                    <View style={styles.continueBtnView}>
+                  {isLoading?<Loader color={colors.white} isLoading={isLoading}/>: <View style={styles.continueBtnView}>
                         <Text style={styles.continueTxt}>{strings.CONTINUE}</Text>
                         <Image source={imagePath.right_arrow} style={styles.rightArrowImg}/>
-                    </View>
+                    </View>}
+                   
                 </SimpleButton>
                 </View>
                 
                 </View>
-                <Loader isLoading={isLoading}/>
             </WrapperContainer>
         )
     }

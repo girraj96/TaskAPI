@@ -1,6 +1,6 @@
 import React from 'react'
-import { View, Text,TextInput } from 'react-native'
-import styles from './styles';
+import {TextInput, StyleSheet } from 'react-native'
+
 
 export default function SimpleTxtInput(props) {
     const {_onSearch,placeholder}=props;
@@ -9,3 +9,9 @@ export default function SimpleTxtInput(props) {
 
     )
 }
+const styles=StyleSheet.create({
+    txtInput:{
+        height:50,
+        paddingHorizontal:15
+    }
+})

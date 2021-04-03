@@ -1,7 +1,7 @@
 import React from 'react'
-import { View, Text } from 'react-native'
-import strings from '../../constants/lang';
-import commonStyles from '../../styles/commonStyles';
+import { View, Text, StyleSheet } from 'react-native'
+import strings from '../constants/lang';
+import commonStyles from '../styles/commonStyles';
 
 
 export default function ListEmptyComp(props) {

@@ -2,7 +2,6 @@ import React from 'react'
 import { View, Text,StyleSheet, Image, TouchableOpacity, } from 'react-native'
 import fontFamily from '../styles/fontFamily';
 import colors from "../styles/colors"
-import imagePath from '../constants/imagePath';
 import commonStyles from '../styles/commonStyles';
 
 export default function UserPosts(props) {

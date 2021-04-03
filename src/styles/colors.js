@@ -1,6 +1,5 @@
 export default{
     themeColor:"#F55346",
-    tabFocused:"#ff2400",
     tabUnFocused:"#E4E4E4",
     white:"#ffffff",
     black:"#000",

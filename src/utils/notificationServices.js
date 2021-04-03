@@ -23,6 +23,6 @@ export  const requestUserPermission = async () => {
   }
 
   //Background messaging
-  export const unsubscribe = messaging().onMessage(async remoteMessage => {
+  export const getBackgroundMsg = messaging().onMessage(async remoteMessage => {
     Alert.alert('A new FCM message arrived!', JSON.stringify(remoteMessage));
   });

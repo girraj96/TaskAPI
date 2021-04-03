@@ -1,17 +1,20 @@
 import React, { Component } from 'react'
 import { Text, View, Image, TouchableOpacity } from 'react-native'
-import Header from '../../Components/Header/Header'
-import OtpFields from '../../Components/OtpFields/OtpFields'
-import WrapperContainer from '../../Components/WrapperContainer/WrapperContainer'
+
 import imagePath from '../../constants/imagePath'
 import colors from '../../styles/colors'
-import styles from './style'
+import styles from './styles'
 import actions from "../../redux/actions"
 import { showMessage } from "react-native-flash-message"
 import strings from '../../constants/lang'
-import SimpleButton from '../../Components/SimpleButton/SimpleButton'
-import Loader from '../../Components/Loader/Loader'
 
+
+//components
+import SimpleButton from '../../Components/SimpleButton'
+import Loader from '../../Components/Loader'
+import Header from '../../Components/Header'
+import OtpFields from '../../Components/OtpFields'
+import WrapperContainer from '../../Components/WrapperContainer'
 
 export default class VerifyOTP extends Component {
   state = {
@@ -70,12 +73,13 @@ export default class VerifyOTP extends Component {
             <Text style={styles.notReceiveOTP}>{strings.NOT_RECEIVE_OTP} <Text style={styles.resendOTP}>{strings.RESEND_OTP}</Text></Text>
           <View style={styles.verifyOtpView}>
             <SimpleButton bgColor={colors.themeColor} borderColor={colors.themeColor} _onSimpleButton={this._onVerifyOTP}>
-              <Text style={styles.verifyProceed}>{strings.VERIFY_PROCEED}</Text>
+              {isLoading? 
+              <Loader color={colors.white} isLoading={isLoading}/>
+              :<Text style={styles.verifyProceed}>{strings.VERIFY_PROCEED}</Text>}
             </SimpleButton>
           </View>
 
         </View>
-        <Loader isLoading={isLoading}/>
       </WrapperContainer>
     )
   }

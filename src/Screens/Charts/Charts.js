@@ -1,18 +1,22 @@
 import React, { Component } from 'react'
 import { Image, Text, TouchableOpacity, View, FlatList, TextInput } from 'react-native'
-import Header from '../../Components/Header/Header'
-import Loader from '../../Components/Loader/Loader'
-import WrapperContainer from '../../Components/WrapperContainer/WrapperContainer'
+
+//
 import actions from "../../redux/actions"
-import UserPosts from '../../Components/UserPosts'
-import { showMessage } from 'react-native-flash-message'
+
+//
 import colors from '../../styles/colors'
-import styles from '../Home/style'
-import SimpleTxtInput from '../../Components/SimpleTxtInput/SimpleTxtInput'
 import imagePath from '../../constants/imagePath'
 import strings from '../../constants/lang'
-import ListEmptyComp from '../../Components/ListEmptyComp/ListEmptyComp'
-import {showError} from "../../utils/helperFunctions"
+import styles from './styles'
+
+//components
+import Header from '../../Components/Header'
+import Loader from '../../Components/Loader'
+import ListEmptyComp from '../../Components/ListEmptyComp'
+import SimpleTxtInput from '../../Components/SimpleTxtInput'
+import UserPosts from '../../Components/UserPosts'
+import WrapperContainer from '../../Components/WrapperContainer'
 
 
 export default class Charts extends Component {
@@ -59,7 +63,7 @@ export default class Charts extends Component {
                 <Header>
                     <View style={styles.searchBar}>
                         <SimpleTxtInput placeholder={strings.SEARCH_HERE} _onSearch={this._onSearch} />
-                        <Image source={imagePath.searchIcon} style={styles.searchIcon} />
+                        {isLoading?<View style={styles.loaderView}><Loader isLoading={isLoading} size={"small"}/></View>: <Image source={imagePath.searchIcon} style={styles.searchIcon}/>}
                     </View>
                   
                 </Header>
@@ -71,7 +75,6 @@ export default class Charts extends Component {
                 <View style={{ flex: 1}}>
                     <FlatList
                         data={userPosts}
-                        ListFooterComponent={() => <View style={{ height: 30 }}><Loader isLoading={isLoading} /></View>}
                         keyExtractor={(item, index) => index.toString()}
                         renderItem={({ item }) => <UserPosts data={item} />}
                         onEndReached={this._onEndReached}
