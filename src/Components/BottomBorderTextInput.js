@@ -16,6 +16,5 @@ const styles= StyleSheet.create({
         ...commonStyles.fontBold22,
         borderBottomColor:colors.themeColor,
         borderBottomWidth:1,
-
     }
 })

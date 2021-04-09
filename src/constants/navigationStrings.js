@@ -5,7 +5,7 @@ export default{
 
     LOGIN:"login",
     REGISTER:"register",
-    OTP_VERIFICATION:"otpVerification",
+    LOGIN_WITH_OTP:"loginWithOTP",
     HOME:"home",
     STATISTICS:"Statistics",
     PROFILE:"profile",
@@ -25,7 +25,7 @@ export default{
     CHAT_SCREEN:"Chat",
 
     // DRAWER TAB Routes
-    BOOKMARKS:"Bookmarks",
+    QR_CODE_SCREEN:"QR Code",
     SETTING:"Settings",
     SUPPORT:"Support"
 }

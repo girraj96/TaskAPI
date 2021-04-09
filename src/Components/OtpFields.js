@@ -63,7 +63,7 @@ const styles=StyleSheet.create({
       borderBottomWidth: 1,
     },
     cellText: {
-      color: '#000',
+      color: colors.black,
       fontSize: 36,
       textAlign: 'center',
     },

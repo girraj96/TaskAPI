@@ -13,6 +13,7 @@ import UserPosts from '../../Components/UserPosts'
 import WrapperContainer from '../../Components/WrapperContainer'
 import Loader from '../../Components/Loader'
 import Header from '../../Components/Header'
+import { showError } from '../../utils/helperFunctions'
 
 export default class Home extends Component {
     state = {
@@ -43,11 +44,7 @@ export default class Home extends Component {
                     userPosts: [...userPosts, ...response.data]
                 })
             }).catch((error) => {
-                showMessage({
-                    type: "danger",
-                    icon: "danger",
-                    message: error.message
-                })
+               showError(error.message)
             });
 
     }

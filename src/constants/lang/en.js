@@ -19,5 +19,8 @@ export default {
     FACEBOOK:"Facebook",
     GOOGLE:"Google",
     COUNTRY_CODE:"+91",
-    DUMMY_TXT:"This is Login"
+    DUMMY_TXT:"This is Login",
+    DESCRIPTION:"description...",
+    CONFIRM:"Confirm",
+    REMOVE:"Remove"
 }

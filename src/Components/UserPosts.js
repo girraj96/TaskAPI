@@ -3,6 +3,7 @@ import { View, Text,StyleSheet, Image, TouchableOpacity, } from 'react-native'
 import fontFamily from '../styles/fontFamily';
 import colors from "../styles/colors"
 import commonStyles from '../styles/commonStyles';
+import strings from '../constants/lang';
 
 export default function UserPosts(props) {
     const {data}=props
@@ -12,14 +13,14 @@ export default function UserPosts(props) {
             <Image source={{uri:data.profileImg[0].original}} style={styles.imgView} resizeMode="cover"/>
             <View style={styles.nameDescView}>
             <Text style={styles.personName}>{data.firstName}</Text>
-            <Text style={styles.descriptionTxt}>description...</Text>
+            <Text style={styles.descriptionTxt}>{strings.DESCRIPTION}</Text>
             </View>
            <View style={styles.addRemoveBtnView}>
            <TouchableOpacity style={styles.addButton}>
-                <Text style={styles.addTxt}>Confirm</Text>
+                <Text style={styles.addTxt}>{strings.CONFIRM}</Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.removeButton}>
-                <Text style={styles.removeTxt}>Remove</Text>
+                <Text style={styles.removeTxt}>{strings.REMOVE}</Text>
             </TouchableOpacity>
            </View>
         </View>

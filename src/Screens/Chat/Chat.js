@@ -2,15 +2,16 @@ import React, { Component } from 'react'
 import { FlatList, Text, View} from 'react-native'
 import navigationStrings from '../../constants/navigationStrings'
 import actions from '../../redux/actions'
-import WrapperContainer from '../../Components/WrapperContainer'
 import colors from '../../styles/colors'
+import strings from '../../constants/lang'
+import styles from './styles'
+import { showError } from '../../utils/helperFunctions'
+
+//Components
+import WrapperContainer from '../../Components/WrapperContainer'
 import Loader from '../../Components/Loader'
-import { showMessage } from 'react-native-flash-message'
 import UserChats from '../../Components/UserChats'
 import Header from '../../Components/Header'
-import strings from '../../constants/lang'
-import commonStyles from '../../styles/commonStyles'
-import styles from './styles'
 
 export default class Chat extends Component {
     state = {
@@ -50,11 +51,7 @@ export default class Chat extends Component {
                 this.setState({
                     isLoading:false
                 })
-                showMessage({
-                    type: "danger",
-                    icon: "danger",
-                    message: error.message
-                })
+               showError(error.message)
             });
             
     }
@@ -69,7 +66,7 @@ export default class Chat extends Component {
 
     render() {
         const {userChats, isLoading}=this.state;
-        console.log("in Chats=> ", userChats)
+        console.log("in Chat screen===> ", userChats)
         return (
            <WrapperContainer>
                <Header bgColor={colors.lightGrey}>

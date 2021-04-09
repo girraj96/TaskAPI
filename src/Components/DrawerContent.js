@@ -37,7 +37,7 @@ export default function DrawerContent(props){
                             icon={({color, size}) => (
                                <Image source={imagePath.home} style={styles.drawericons}/>
                             )}
-                            label={navigationStrings.HOME}
+                            label={navigationStrings.MONEY}
                             onPress={() => {navigation.navigate(navigationStrings.HOME)}}
                         />
                         <DrawerItem 
@@ -53,7 +53,7 @@ export default function DrawerContent(props){
                               />
                             )}
                             onPress={()=>{navigation.navigate(navigationStrings.QR_CODE)}}
-                            label={navigationStrings.BOOKMARKS}
+                            label={navigationStrings.QR_CODE_SCREEN}
                            
                         />
                         <DrawerItem 
@@ -123,7 +123,7 @@ const styles = StyleSheet.create({
     },
     bottomDrawerSection: {
         marginBottom: 15,
-        borderTopColor: '#f4f4f4',
+        borderTopColor: colors.lightGrey,
         borderTopWidth: 1
     },
     preference: {
