@@ -1,86 +1,81 @@
 import React, { Component } from 'react'
 import { Image, Text, TouchableOpacity, View, FlatList, TextInput } from 'react-native'
 
-//
-import actions from "../../redux/actions"
 
 //
 import colors from '../../styles/colors'
 import imagePath from '../../constants/imagePath'
-import strings from '../../constants/lang'
-import styles from './styles'
 
 //components
 import Header from '../../Components/Header'
-import Loader from '../../Components/Loader'
-import ListEmptyComp from '../../Components/ListEmptyComp'
-import SimpleTxtInput from '../../Components/SimpleTxtInput'
-import UserPosts from '../../Components/UserPosts'
+
 import WrapperContainer from '../../Components/WrapperContainer'
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
+import { AreaChart, Grid, BarChart, LineChart, PieChart} from 'react-native-svg-charts'
+import * as shape from 'd3-shape'
+import strings from '../../constants/lang'
+import styles from './styles'
 
 
 export default class Charts extends Component {
     state = {
-        isLoading: false,
-        userPosts: [],
-        searchTxts: "",
+            data: [50, 10, 40, 95, -4, -24, 85, 91, 35, 53, -53, 24, 50, -20, -80]     
     }
 
+    
+    randomColor = () => ('#' + ((Math.random() * 0xffffff) << 0).toString(16) + '000000').slice(0, 7)
+    pieData = this.state.data
+           .filter((value) => value > 0)
+           .map((value, index) => ({
+               value,
+               svg: {
+                   fill: this.randomColor(),
+                   onPress: () => console.log('press', index),
+               },
+               key: `pie-${index}`,
+           }))
 
-    _onSearch = (value) => {
-        const {searchTxts}=this.state
-        this.setState({
-            isLoading: true,
-            searchTxts: value,
-        })
-        if (this.isSearchUsers) {
-            clearTimeout(this.isSearchUsers);
-        }
 
-        this.isSearchUsers = setTimeout(() => {
-            actions.searchUsers(searchTxts)
-                .then((res) =>
-                    this.setState({
-                        userPosts: res.data,
-                        isLoading: false,
-                    }))
-                .catch((error) =>
-                    this.setState({
-                        userPosts: [],
-                        isLoading: false
-                    }));
-                }, 500)
-    }
-
-    _findNearBy=()=>{
-
-    }
 
     render() {
         const { isLoading, userPosts } = this.state;
+        const {navigation}=this.props;
         return (
             <WrapperContainer bgColor={colors.white} statusBarColor={colors.themeColor}>
-                <Header>
-                    <View style={styles.searchBar}>
-                        <SimpleTxtInput placeholder={strings.SEARCH_HERE} _onSearch={this._onSearch} />
-                        {isLoading?<View style={styles.loaderView}><Loader isLoading={isLoading} size={"small"}/></View>: <Image source={imagePath.searchIcon} style={styles.searchIcon}/>}
-                    </View>
-                  
-                </Header>
-                <TouchableOpacity style={styles.nearByButtonView} onPress={this._findNearBy}>
-                        <Image source={imagePath.location_nearby} style={styles.locationImg}/>
-                        <Text>{strings.FIND_NEARBY_FRIENDS}</Text>
-                        <Image source={imagePath.right_move} style={styles.rightMove}/>
-                    </TouchableOpacity>
-                <View style={{ flex: 1}}>
-                    <FlatList
-                        data={userPosts}
-                        keyExtractor={(item, index) => index.toString()}
-                        renderItem={({ item }) => <UserPosts data={item} />}
-                        onEndReached={this._onEndReached}
-                        ListEmptyComponent={<ListEmptyComp isLoading={isLoading}/>}
-                    />
-                </View>
+               <Header bgColor={colors.white}>
+               <View style={styles.chartHeader}>
+                   <TouchableOpacity onPress={()=>navigation.openDrawer()}>
+                   <Image source={imagePath.drawer} style={styles.drawerIcon}/>
+                   </TouchableOpacity>
+                <Text style={styles.screenNameTxt}>{strings.STATS}</Text>
+               </View>
+               </Header>
+
+                <KeyboardAwareScrollView style={{flex:1}} showsVerticalScrollIndicator={false}>
+             <AreaChart
+                style={{ height: 200 }}
+                data={this.state.data}
+                contentInset={{ top: 30, bottom: 30 }}
+                curve={shape.curveNatural}
+                svg={{ fill: 'rgba(134, 65, 244, 0.8)' }}
+            >
+                <Grid />
+            </AreaChart>
+            <BarChart style={{ height: 200 }} data={this.state.data}  svg={{ fill: 'rgba(134, 65, 244, 0.8)' }} contentInset={{ top: 30, bottom: 30 }}>
+                <Grid />
+            </BarChart>
+
+            <LineChart
+                style={{ height: 200 }}
+                data={this.state.data}
+                svg={{ stroke: 'rgb(134, 65, 244)' }}
+                contentInset={{ top: 20, bottom: 20 }}
+            >
+                <Grid />
+            </LineChart>
+            <PieChart style={{ height: 200 }} data={this.pieData}/>
+            
+             </KeyboardAwareScrollView>
             </WrapperContainer>
         )
     }

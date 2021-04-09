@@ -14,6 +14,7 @@ export default function counterReducer(state=initialState, action){
         
         case types.LOGOUT:
             return{...state, userData:{}}
+   
             
         default:
              return {...state}

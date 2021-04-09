@@ -11,6 +11,15 @@ export default{
     logout:require('../assets/images/logout.png'),
     location_nearby:require('../assets/images/location_nearby.png'),
     right_move:require('../assets/images/right_move.png'),
+    google:require('../assets/images/google.png'),
+    facebook:require('../assets/images/facebook.png'),
+    home:require('../assets/images/home_icon.png'),
+    user_icon:require('../assets/images/user.png'),
+    bookmark_icon:require('../assets/images/bookmark.png'),
+    settings_icon:require('../assets/images/settings.png'),
+    support_icon:require('../assets/images/support.png'),
+    chat_icon:require('../assets/images/chat_icon.png'),
+    drawer:require('../assets/images/drawer.png'),
 
     
 

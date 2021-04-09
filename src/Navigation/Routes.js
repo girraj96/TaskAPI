@@ -5,12 +5,13 @@ import AuthStack from './AuthStack';
 import MainStack from './MainStack';
 import TopRoutes from './TopRoutes';
 import { connect } from 'react-redux';
+import { navigationRef } from './NavigationService';
 
 const Stack=createStackNavigator();
  function Routes(props) {
     const {userData}=props;
     return (
-        <NavigationContainer>
+        <NavigationContainer ref={navigationRef}>
             <Stack.Navigator>
                 {!!userData.accessToken?<>{MainStack()}</>:<>{AuthStack()}</>}
             </Stack.Navigator>

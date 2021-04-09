@@ -27,6 +27,19 @@ export default class App extends Component {
     SplashScreen.hide();
     requestUserPermission();
     getBackgroundMsg();
+
+    // Alert.alert(
+    //   "Alert Title",
+    //   "My Alert Msg",
+    //   [
+    //     {
+    //       text: "Cancel",
+    //       onPress: () => console.log("Cancel Pressed"),
+    //       style: "cancel"
+    //     },
+    //     { text: "OK", onPress: () =>navigate(navigationStrings.CHARTS, "bkfjb") }
+    //   ]
+    // );
   }
 
   render() {

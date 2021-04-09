@@ -11,3 +11,5 @@ export const SEND_OTP = getApiUrl('/user/v1/loginSignupOtp');
 export const OTP_VERIFY=getApiUrl('/user/v1/verifyOtp');
 export const INFINITR_SCROLL=getApiUrl('/user/v1/getUserSearch');
 export const SEARCH = getApiUrl('/user/v1/getUserNearMe');
+export const USER_CHATS=getApiUrl('/user/v1/getAllConversations');
+export const GET_USER_CHATS=getApiUrl('/user/v1/getConversationMessages');

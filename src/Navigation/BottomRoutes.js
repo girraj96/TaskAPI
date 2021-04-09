@@ -7,6 +7,7 @@ import TopRoutes from './TopRoutes';
 import colors from '../styles/colors';
 import { Charts, Profile } from '../Screens';
 import imagePath from '../constants/imagePath';
+import Chat from '../Screens/Chat/Chat';
 
 const BottomTab = createBottomTabNavigator();
 
@@ -54,8 +55,19 @@ function BottomRoutes() {
                     />
                 )
             }} />
+         <BottomTab.Screen name={navigationStrings.CHAT} component={Chat} options={{
+                tabBarLabel: "Chat",
+                tabBarIcon: ({ focused, color, size }) => (
+                    <Image source={imagePath.chat_icon}
+                        style={{
+                            width: size,
+                            height: size,
+                            tintColor: focused ? colors.themeColor : colors.tabUnFocused
+                        }}
+                    />
+                )
+            }} />
         
-
         </BottomTab.Navigator>
 
     )

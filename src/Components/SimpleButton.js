@@ -6,12 +6,13 @@ export default function SimpleButton(props) {
     const {bgColor, children,borderColor, _onSimpleButton}=props;
     return (
         <TouchableOpacity style={{
-            height:55,
+            height:50,
             backgroundColor:bgColor,
             borderRadius:5,
             borderWidth:2,
             borderColor:borderColor,
-            justifyContent:"center"
+            justifyContent:"center",
+            elevation:5
         }}
         onPress={_onSimpleButton}>
             {children}

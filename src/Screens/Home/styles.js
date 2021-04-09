@@ -6,16 +6,21 @@ export default StyleSheet.create({
 
 
     screenNameTxt:{
-        ...commonStyles.fontBold22,
+        ...commonStyles.fontBold18,
         marginHorizontal:10
     },
     homeHeader:{
-        width:"100%",
         height:"100%",
         flexDirection:"row",
         alignItems:"center",
         borderBottomColor:colors.lightGrey,
          borderBottomWidth:1,
+         paddingHorizontal:5
     },
+    drawerIcon:{
+        height:35,
+        width:35,
+        tintColor:colors.themeColor
+    }
 
 })

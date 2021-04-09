@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {Text, View,FlatList, RefreshControl} from 'react-native'
+import {Text, View,FlatList, RefreshControl, Image} from 'react-native'
 import colors from '../../styles/colors'
 import styles from './styles'
 import actions from "../../redux/actions"
@@ -11,6 +11,9 @@ import UserPosts from '../../Components/UserPosts'
 import WrapperContainer from '../../Components/WrapperContainer'
 import Loader from '../../Components/Loader'
 import Header from '../../Components/Header'
+import imagePath from '../../constants/imagePath'
+import { TouchableOpacity } from 'react-native-gesture-handler'
+import socketServices from '../../utils/socketService'
 
 
 
@@ -71,10 +74,14 @@ export default class Home extends Component {
 
     render() {
         const {isLoading, userPosts,isRefreshing}=this.state;
+        const {navigation}=this.props;
         return (
            <WrapperContainer  statusBarColor={colors.themeColor}>
                <Header bgColor={colors.white}>
                <View style={styles.homeHeader}>
+                   <TouchableOpacity onPress={()=>navigation.openDrawer()}>
+                   <Image source={imagePath.drawer} style={styles.drawerIcon}/>
+                   </TouchableOpacity>
                 <Text style={styles.screenNameTxt}>{strings.YOUR_FEED}</Text>
                </View>
                </Header>

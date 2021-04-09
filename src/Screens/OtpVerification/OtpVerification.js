@@ -7,7 +7,7 @@ import colors from '../../styles/colors'
 import Loader from '../../Components/Loader'
 import navigationStrings from '../../constants/navigationStrings'
 import actions from "../../redux/actions"
-import {showMessage} from "react-native-flash-message"
+import { showMessage } from "react-native-flash-message"
 import strings from '../../constants/lang'
 
 //components
@@ -15,94 +15,167 @@ import SimpleButton from '../../Components/SimpleButton'
 import WrapperContainer from '../../Components/WrapperContainer'
 import BottomBorderTextInput from '../../Components/BottomBorderTextInput'
 import Header from '../../Components/Header'
+import {
+  GoogleSignin,
+  GoogleSigninButton,
+  statusCodes,
+} from '@react-native-google-signin/google-signin';
 
+import { LoginButton, AccessToken, LoginManager} from 'react-native-fbsdk';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
+
+
+GoogleSignin.configure();
 export default class OtpVerification extends Component {
+  state = {
+    isLoading: false,
+    userMobileNumber: "",
 
-    state={
-        isLoading:false,
-        userMobileNumber:"",
-        
-    }
+  }
 
-    _onChangeText=(value)=>{
+  _onChangeText = (value) => {
+    this.setState({
+      userMobileNumber: value
+    })
+  }
+  _onSimpleButton = () => {
+    const { userMobileNumber } = this.state;
+    const { navigation } = this.props;
+    this.setState({
+      isLoading: true,
+    });
+
+    actions.onSendOTP({
+      contactDetails: {
+        phoneNo: userMobileNumber,
+        countryCode: '+91',
+        countryCodeISO: "IN"
+      }
+    })
+      .then(res => {
         this.setState({
-            userMobileNumber:value
-        })
-    }
-    _onSimpleButton=()=>{
-        const {userMobileNumber} = this.state;
-        const {navigation}=this.props;
+          isLoading: false,
+        });
+        showMessage({
+          type: 'success',
+          icon: 'success',
+          message: 'OTP sent successfully',
+        });
+        navigation.navigate(navigationStrings.VERIFY_OTP, { userId: res.data.userId, userMobileNumber: userMobileNumber })
+      })
+      .catch(error => {
         this.setState({
-            isLoading: true,
-          });
-        
-          actions.onSendOTP({
-            contactDetails:{
-              phoneNo:userMobileNumber,
-              countryCode:'+91',
-              countryCodeISO:"IN"
-            }
-          })
-          .then(res => {
-            this.setState({
-              isLoading: false,
-            });
-            showMessage({
-              type: 'success',
-              icon: 'success',
-              message: 'OTP sent successfully',
-            });
-          navigation.navigate(navigationStrings.VERIFY_OTP,{userId:res.data.userId, userMobileNumber:userMobileNumber})
-          })
-          .catch(error => {
-            this.setState({
-              isLoading: false,
-            });
-            showMessage({
-              type: 'danger',
-              icon: 'danger',
-              message: error.message,
-            });
-          });
-    }
+          isLoading: false,
+        });
+        showMessage({
+          type: 'danger',
+          icon: 'danger',
+          message: error.message,
+        });
+      });
+  }
 
-    render() {
-        const {isLoading}=this.state;
-        return (
-            <WrapperContainer statusBarColor={colors.themeColor}>
-                <Header bgColor={colors.white}>
-                    <TouchableOpacity style={styles.selectLang}>
-                        <Image source={imagePath.globe} style={styles.globeImg}/>
-                        <Text style={styles.selectLangTxt}>{strings.SELECT_LANGUAGE}</Text>
-                    </TouchableOpacity>
-                </Header>
-                <View style={styles.mainView}>
-                <Text style={styles.accountLoginTxt}>{strings.ACCOUNT_LOGIN}</Text>
-                <Text style={styles.validNumberTxt}>{strings.PLEASE_ENTER_VALID_NUMBER}</Text>
-                <Text style={styles.mobileNumberTxt}>{strings.MOBILE_NUMBER}</Text>
-                <View>
-                <View style={styles.mobileNumberTxtInputView}>
-                    <Image source={imagePath.mobile} style={styles.mobileImg} />
-                    <Text style={styles.countryCodeTxt}>+91</Text>
-                    <View style={styles.bottomBorderTextInput}>
-                    <BottomBorderTextInput maxLength={10} keyboardType={"number-pad"} selectionColor={colors.themeColor} _onChangeText={this._onChangeText}/>
-                    </View>
-                </View>
-                <Text style={styles.enterNumberTxt}>{strings.ENTER_YOUR_NUMBER}</Text>
-                </View>
-             
-                <View style={styles.continueBtnMainView}>
-                <SimpleButton bgColor={colors.themeColor} borderColor={colors.themeColor} _onSimpleButton={this._onSimpleButton}>
-                  {isLoading?<Loader color={colors.white} isLoading={isLoading}/>: <View style={styles.continueBtnView}>
-                        <Text style={styles.continueTxt}>{strings.CONTINUE}</Text>
-                        <Image source={imagePath.right_arrow} style={styles.rightArrowImg}/>
-                    </View>}
-                   
-                </SimpleButton>
-                </View>
-                
-                </View>
-            </WrapperContainer>
-        )
+  _signIn = async () => {
+    try {
+      await GoogleSignin.hasPlayServices();
+      const userInfo = await GoogleSignin.signIn();
+      this.setState({ userInfo });
+      console.log(userInfo)
+    } catch (error) {
+      if (error.code === statusCodes.SIGN_IN_CANCELLED) {
+        // user cancelled the login flow
+      } else if (error.code === statusCodes.IN_PROGRESS) {
+        // operation (e.g. sign in) is in progress already
+      } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
+        // play services not available or outdated
+      } else {
+        // some other error happened
+      }
     }
+  };
+
+  signOut = async () => {
+    try {
+      await GoogleSignin.revokeAccess();
+      await GoogleSignin.signOut();
+      this.setState({ user: null }); // Remember to remove the user from your app's state as well
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  _onFBlogin = () => {
+    LoginManager.logInWithPermissions(["public_profile"]).then(
+      function(result) {
+        if (result.isCancelled) {
+          console.log("Login cancelled");
+        } else {
+          console.log(
+            "Login success with permissions: " +
+              result.grantedPermissions.toString()
+          );
+        }
+      },
+      function(error) {
+        console.log("Login fail with error: " + error);
+      }
+    );
+  }
+
+  render() {
+    const { isLoading } = this.state;
+    return (
+      <WrapperContainer statusBarColor={colors.themeColor}>
+        <Header bgColor={colors.white}>
+          <TouchableOpacity style={styles.selectLang}>
+            <Image source={imagePath.globe} style={styles.globeImg} />
+            <Text style={styles.selectLangTxt}>{strings.SELECT_LANGUAGE}</Text>
+          </TouchableOpacity>
+        </Header>
+        <KeyboardAwareScrollView contentContainerStyle={styles.mainView}>
+          <Text style={styles.accountLoginTxt}>{strings.ACCOUNT_LOGIN}</Text>
+          <Text style={styles.validNumberTxt}>{strings.PLEASE_ENTER_VALID_NUMBER}</Text>
+          <Text style={styles.mobileNumberTxt}>{strings.MOBILE_NUMBER}</Text>
+          <View>
+            <View style={styles.mobileNumberTxtInputView}>
+              <Image source={imagePath.mobile} style={styles.mobileImg} />
+              <Text style={styles.countryCodeTxt}>+91</Text>
+              <View style={styles.bottomBorderTextInput}>
+                <BottomBorderTextInput maxLength={10} keyboardType={"number-pad"} selectionColor={colors.themeColor} _onChangeText={this._onChangeText} />
+              </View>
+            </View>
+            <Text style={styles.enterNumberTxt}>{strings.ENTER_YOUR_NUMBER}</Text>
+          </View>
+
+          <View style={styles.continueBtnMainView}>
+            <SimpleButton bgColor={colors.themeColor} borderColor={colors.themeColor} _onSimpleButton={this._onSimpleButton}>
+              {isLoading ? <Loader color={colors.white} isLoading={isLoading} /> : <View style={styles.continueBtnView}>
+                <Text style={styles.continueTxt}>{strings.CONTINUE}</Text>
+                <Image source={imagePath.right_arrow} style={styles.rightArrowImg} />
+              </View>}
+            </SimpleButton>
+          </View>
+          <View style={styles.socialLoginBtnView}>
+            <View style={styles.googleSigninBtn}>
+            <SimpleButton _onSimpleButton={this._onFBlogin} bgColor={colors.white} borderColor={colors.white} >
+            <View style={styles.simpleBtnChild}>
+                  <Image source={imagePath.facebook} style={{height:30, width:30}} />
+                  <Text style={styles.socialTxts}>Facebook</Text>
+                </View>
+             </SimpleButton>
+            </View>
+            <View style={styles.facebookSigninBtn}>
+              <SimpleButton _onSimpleButton={this._signIn}  bgColor={colors.white} borderColor={colors.white}>
+                <View style={styles.simpleBtnChild}>
+                  <Image source={imagePath.google} style={{height:30, width:30}} />
+                  <Text>Google</Text>
+                </View>
+              </SimpleButton>
+         
+            </View>
+          </View>
+        </KeyboardAwareScrollView>
+      </WrapperContainer>
+    )
+  }
 }

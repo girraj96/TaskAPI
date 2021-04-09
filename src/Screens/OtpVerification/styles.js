@@ -64,10 +64,10 @@ export default StyleSheet.create({
         marginLeft:35
     },
     continueBtnMainView: {
-        position: "absolute",
-        bottom: 30,
         alignSelf: "center",
-        width: "100%"
+        width: "100%",
+        position:"absolute",
+        bottom:140,
     },
     continueBtnView: {
         flexDirection: "row",
@@ -83,6 +83,24 @@ export default StyleSheet.create({
         height: 30,
         width: 30,
         tintColor: colors.white
+    },
+    socialLoginBtnView:{
+        width:"100%",
+        flexDirection:"row",
+        justifyContent:"space-between",
+        position:"absolute",
+        bottom:60,
+        alignSelf:"center"
+    },
+    googleSigninBtn:{
+        width:"49%",    },
+    facebookSigninBtn:{
+        width:"49%",
+    },
+    simpleBtnChild:{
+        flexDirection:"row", 
+        alignItems:"center", 
+        justifyContent:"space-around"
     }
 
 })
