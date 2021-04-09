@@ -3,7 +3,6 @@ import {NavigationContainer} from "@react-navigation/native";
 import {createStackNavigator} from "@react-navigation/stack"
 import AuthStack from './AuthStack';
 import MainStack from './MainStack';
-import TopRoutes from './TopRoutes';
 import { connect } from 'react-redux';
 import { navigationRef } from './NavigationService';
 

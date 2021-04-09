@@ -3,8 +3,6 @@ import colors from "../../styles/colors";
 import commonStyles from "../../styles/commonStyles";
 
 export default StyleSheet.create({
-
-
     screenNameTxt:{
         ...commonStyles.fontBold18,
         marginHorizontal:10

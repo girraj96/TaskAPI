@@ -1,19 +1,19 @@
-
 import React from 'react'
 import { View, Text, Image } from 'react-native';
 import { showMessage } from 'react-native-flash-message';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { GiftedChat } from 'react-native-gifted-chat';
 import { connect } from 'react-redux';
-import Header from '../../Components/Header';
 import imagePath from '../../constants/imagePath';
 import { SOCKET_STRINGS } from '../../constants/socketConstants';
 import actions from '../../redux/actions';
 import colors from '../../styles/colors';
-import commonStyles from '../../styles/commonStyles';
 import { showError } from '../../utils/helperFunctions';
 import socketServices from '../../utils/socketService';
 import styles from './styles';
+
+///Components
+import Header from '../../Components/Header';
 
 
 class ChattingUser extends React.Component {

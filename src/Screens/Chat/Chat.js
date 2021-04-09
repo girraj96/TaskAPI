@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { FlatList, Text, View, Dimensions, Image,RefreshControl } from 'react-native'
+import { FlatList, Text, View} from 'react-native'
 import navigationStrings from '../../constants/navigationStrings'
 import actions from '../../redux/actions'
 import WrapperContainer from '../../Components/WrapperContainer'
@@ -10,10 +10,10 @@ import UserChats from '../../Components/UserChats'
 import Header from '../../Components/Header'
 import strings from '../../constants/lang'
 import commonStyles from '../../styles/commonStyles'
+import styles from './styles'
 
 export default class Chat extends Component {
     state = {
-
         skipCount:0,
         isLoading:false,
         userChats:[],
@@ -74,7 +74,7 @@ export default class Chat extends Component {
            <WrapperContainer>
                <Header bgColor={colors.lightGrey}>
                    <View style={{paddingHorizontal:15}}>
-                       <Text style={{...commonStyles.fontBold18}}>{strings.CHAT}</Text>
+                       <Text style={styles.chatScreenNameTxt}>{strings.CHAT}</Text>
                    </View>
                </Header>
                     <FlatList

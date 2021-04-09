@@ -50,6 +50,7 @@ export default class Profile extends Component {
     _findNearBy=()=>{
             ///to be added
     }
+    
     render() {
         const {isLoading,userPosts}= this.state;
         return (

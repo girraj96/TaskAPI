@@ -8,13 +8,13 @@ import actions from "../../redux/actions"
 import { showMessage } from "react-native-flash-message"
 import strings from '../../constants/lang'
 
-
 //components
 import SimpleButton from '../../Components/SimpleButton'
 import Loader from '../../Components/Loader'
 import Header from '../../Components/Header'
 import OtpFields from '../../Components/OtpFields'
 import WrapperContainer from '../../Components/WrapperContainer'
+import { showError } from '../../utils/helperFunctions'
 
 export default class VerifyOTP extends Component {
   state = {
@@ -23,7 +23,6 @@ export default class VerifyOTP extends Component {
   };
 
   _onBackPress = () => this.props.navigation.goBack();
-
   _onVerifyOTP = () => {
     const { value } = this.state;
     const { userId } = this.props.route.params
@@ -46,11 +45,7 @@ export default class VerifyOTP extends Component {
         this.setState({
           isLoading: false,
         });
-        showMessage({
-          type: 'danger',
-          icon: 'danger',
-          message: error.message,
-        });
+        showError(error.message)
       });
   }
   render() {

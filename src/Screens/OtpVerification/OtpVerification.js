@@ -1,28 +1,26 @@
 import React, { Component } from 'react'
 import { Image, Text, TouchableOpacity, View } from 'react-native'
-
 import styles from './styles'
 import imagePath from '../../constants/imagePath'
 import colors from '../../styles/colors'
-import Loader from '../../Components/Loader'
 import navigationStrings from '../../constants/navigationStrings'
 import actions from "../../redux/actions"
 import { showMessage } from "react-native-flash-message"
 import strings from '../../constants/lang'
+import {
+  GoogleSignin,
+  statusCodes,
+} from '@react-native-google-signin/google-signin';
+import {LoginManager} from 'react-native-fbsdk';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
+import { showError, showSuccess } from '../../utils/helperFunctions'
 
 //components
 import SimpleButton from '../../Components/SimpleButton'
 import WrapperContainer from '../../Components/WrapperContainer'
 import BottomBorderTextInput from '../../Components/BottomBorderTextInput'
 import Header from '../../Components/Header'
-import {
-  GoogleSignin,
-  GoogleSigninButton,
-  statusCodes,
-} from '@react-native-google-signin/google-signin';
-
-import { LoginButton, AccessToken, LoginManager} from 'react-native-fbsdk';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
+import Loader from '../../Components/Loader'
 
 
 GoogleSignin.configure();
@@ -30,7 +28,6 @@ export default class OtpVerification extends Component {
   state = {
     isLoading: false,
     userMobileNumber: "",
-
   }
 
   _onChangeText = (value) => {
@@ -56,22 +53,14 @@ export default class OtpVerification extends Component {
         this.setState({
           isLoading: false,
         });
-        showMessage({
-          type: 'success',
-          icon: 'success',
-          message: 'OTP sent successfully',
-        });
+       showSuccess("OTP sent successfully")
         navigation.navigate(navigationStrings.VERIFY_OTP, { userId: res.data.userId, userMobileNumber: userMobileNumber })
       })
       .catch(error => {
         this.setState({
           isLoading: false,
         });
-        showMessage({
-          type: 'danger',
-          icon: 'danger',
-          message: error.message,
-        });
+        showError(error.message)
       });
   }
 

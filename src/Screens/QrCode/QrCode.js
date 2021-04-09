@@ -5,6 +5,7 @@ import QRCode from 'react-native-qrcode-svg';
 import colors from '../../styles/colors';
 import QRCodeScanner from 'react-native-qrcode-scanner';
 import { RNCamera } from 'react-native-camera';
+import styles from './styles';
 
 export default class QrCode extends Component {
     state = {
@@ -36,12 +37,12 @@ export default class QrCode extends Component {
     render() {
         const { isScanner } = this.state;
         return (
-            <View style={{ flex: 1, alignItems: "center", paddingVertical: 20, }}>
+            <View style={styles.mainView}>
                 <QRCode
                     value="https://www.google.com"
                 />
                 <TouchableOpacity onPress={this.onOpenScanner}
-                    style={{ marginVertical:10, height: 50, width: 120, backgroundColor: colors.lightBlue, alignItems: "center", justifyContent: "center" }}>
+                    style={styles.openScannerBtn}>
                     <Text>
                         Scan QR
                     </Text>

@@ -18,5 +18,6 @@ export default {
     CHAT:"Chats",
     FACEBOOK:"Facebook",
     GOOGLE:"Google",
-    COUNTRY_CODE:"+91"
+    COUNTRY_CODE:"+91",
+    DUMMY_TXT:"This is Login"
 }

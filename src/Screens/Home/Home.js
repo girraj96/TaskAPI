@@ -5,17 +5,14 @@ import styles from './styles'
 import actions from "../../redux/actions"
 import { showMessage } from 'react-native-flash-message'
 import strings from '../../constants/lang'
+import imagePath from '../../constants/imagePath'
+import { TouchableOpacity } from 'react-native-gesture-handler'
 
 //components
 import UserPosts from '../../Components/UserPosts'
 import WrapperContainer from '../../Components/WrapperContainer'
 import Loader from '../../Components/Loader'
 import Header from '../../Components/Header'
-import imagePath from '../../constants/imagePath'
-import { TouchableOpacity } from 'react-native-gesture-handler'
-import socketServices from '../../utils/socketService'
-
-
 
 export default class Home extends Component {
     state = {

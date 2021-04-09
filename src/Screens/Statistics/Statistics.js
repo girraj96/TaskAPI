@@ -6,11 +6,11 @@ import strings from '../../constants/lang'
 import styles from './styles'
 import imagePath from '../../constants/imagePath'
 import colors from '../../styles/colors'
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
 //components
 import Header from '../../Components/Header'
 import WrapperContainer from '../../Components/WrapperContainer'
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
 export default class Statistics extends Component {
     state = {
