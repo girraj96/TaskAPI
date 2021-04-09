@@ -14,7 +14,7 @@ export default function ListEmptyComp(props) {
     }
     else {
         return (
-            <View style={{ height:500, justifyContent:"center", alignItems:"center"}}>
+            <View style={styles.mainView}>
                 <Text style={{ ...commonStyles.fontBold18 }}>
                     {strings.NOTHING_TO_SHOW}
                 </Text>
@@ -24,3 +24,12 @@ export default function ListEmptyComp(props) {
         )
     }
 }
+
+const styles = StyleSheet.create({
+    mainView:{
+        height:500, 
+        justifyContent:"center", 
+        alignItems:"center"
+    }
+})
+

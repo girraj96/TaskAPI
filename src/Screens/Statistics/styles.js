@@ -20,5 +20,8 @@ export default StyleSheet.create({
         height:35,
         width:35,
         tintColor:colors.themeColor
+    },
+    charts:{
+        height:200
     }
 })

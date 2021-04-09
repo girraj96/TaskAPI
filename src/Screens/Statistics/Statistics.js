@@ -45,7 +45,7 @@ export default class Statistics extends Component {
 
                 <KeyboardAwareScrollView style={{flex:1}} showsVerticalScrollIndicator={false}>
              <AreaChart
-                style={{ height: 200 }}
+                style={styles.charts}
                 data={this.state.data}
                 contentInset={{ top: 30, bottom: 30 }}
                 curve={shape.curveNatural}
@@ -53,19 +53,19 @@ export default class Statistics extends Component {
             >
                 <Grid />
             </AreaChart>
-            <BarChart style={{ height: 200 }} data={this.state.data}  svg={{ fill: 'rgba(134, 65, 244, 0.8)' }} contentInset={{ top: 30, bottom: 30 }}>
+            <BarChart style={styles.charts} data={this.state.data}  svg={{ fill: 'rgba(134, 65, 244, 0.8)' }} contentInset={{ top: 30, bottom: 30 }}>
                 <Grid />
             </BarChart>
 
             <LineChart
-                style={{ height: 200 }}
+                style={styles.charts}
                 data={this.state.data}
                 svg={{ stroke: 'rgb(134, 65, 244)' }}
                 contentInset={{ top: 20, bottom: 20 }}
             >
                 <Grid />
             </LineChart>
-            <PieChart style={{ height: 200 }} data={this.pieData}/>
+            <PieChart style={styles.charts} data={this.pieData}/>
             
              </KeyboardAwareScrollView>
             </WrapperContainer>
