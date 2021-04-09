@@ -101,6 +101,10 @@ export default StyleSheet.create({
         flexDirection:"row", 
         alignItems:"center", 
         justifyContent:"space-around"
+    },
+    socialIcons:{
+        height:30, 
+        width:30
     }
 
 })

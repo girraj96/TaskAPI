@@ -5,7 +5,7 @@ import {createBottomTabNavigator} from "@react-navigation/bottom-tabs";
 import navigationStrings from '../constants/navigationStrings';
 import TopRoutes from './TopRoutes';
 import colors from '../styles/colors';
-import { Charts, Profile } from '../Screens';
+import { Statistics, Profile } from '../Screens';
 import imagePath from '../constants/imagePath';
 import Chat from '../Screens/Chat/Chat';
 
@@ -29,7 +29,7 @@ function BottomRoutes() {
                     />
                 )
             }} />
-            <BottomTab.Screen name={navigationStrings.CHARTS} component={Charts} options={{
+            <BottomTab.Screen name={navigationStrings.STATISTICS} component={Statistics} options={{
                 tabBarLabel: "Stats",
 
                 tabBarIcon: ({ focused, color, size }) => (

@@ -45,7 +45,7 @@ export default function DrawerContent(props){
                               <Image source={imagePath.user_icon} style={styles.drawericons}/>
                             )}
                             label="Stats"
-                            onPress={() => {navigation.navigate(navigationStrings.CHARTS)}}
+                            onPress={() => {navigation.navigate(navigationStrings.STATISTICS)}}
                         />
                         <DrawerItem 
                             icon={({color, size}) => (

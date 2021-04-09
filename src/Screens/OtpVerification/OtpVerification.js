@@ -139,7 +139,7 @@ export default class OtpVerification extends Component {
           <View>
             <View style={styles.mobileNumberTxtInputView}>
               <Image source={imagePath.mobile} style={styles.mobileImg} />
-              <Text style={styles.countryCodeTxt}>+91</Text>
+              <Text style={styles.countryCodeTxt}>{strings.COUNTRY_CODE}</Text>
               <View style={styles.bottomBorderTextInput}>
                 <BottomBorderTextInput maxLength={10} keyboardType={"number-pad"} selectionColor={colors.themeColor} _onChangeText={this._onChangeText} />
               </View>
@@ -159,16 +159,16 @@ export default class OtpVerification extends Component {
             <View style={styles.googleSigninBtn}>
             <SimpleButton _onSimpleButton={this._onFBlogin} bgColor={colors.white} borderColor={colors.white} >
             <View style={styles.simpleBtnChild}>
-                  <Image source={imagePath.facebook} style={{height:30, width:30}} />
-                  <Text style={styles.socialTxts}>Facebook</Text>
+                  <Image source={imagePath.facebook} style={styles.socialIcons} />
+                  <Text style={styles.socialTxts}>{strings.FACEBOOK}</Text>
                 </View>
              </SimpleButton>
             </View>
             <View style={styles.facebookSigninBtn}>
               <SimpleButton _onSimpleButton={this._signIn}  bgColor={colors.white} borderColor={colors.white}>
                 <View style={styles.simpleBtnChild}>
-                  <Image source={imagePath.google} style={{height:30, width:30}} />
-                  <Text>Google</Text>
+                  <Image source={imagePath.google} style={styles.socialIcons} />
+                  <Text>{strings.GOOGLE}</Text>
                 </View>
               </SimpleButton>
          

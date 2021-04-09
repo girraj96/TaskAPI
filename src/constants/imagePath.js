@@ -20,6 +20,7 @@ export default{
     support_icon:require('../assets/images/support.png'),
     chat_icon:require('../assets/images/chat_icon.png'),
     drawer:require('../assets/images/drawer.png'),
+    green_dot:require('../assets/images/green_dot.png'),
 
     
 

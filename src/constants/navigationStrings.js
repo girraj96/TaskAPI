@@ -7,7 +7,7 @@ export default{
     REGISTER:"register",
     OTP_VERIFICATION:"otpVerification",
     HOME:"home",
-    CHARTS:"charts",
+    STATISTICS:"Statistics",
     PROFILE:"profile",
     CHAT:"chat",
     CHATTING_USERS:"chattingUsers",

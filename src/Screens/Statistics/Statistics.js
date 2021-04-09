@@ -1,27 +1,21 @@
 import React, { Component } from 'react'
-import { Image, Text, TouchableOpacity, View, FlatList, TextInput } from 'react-native'
-
-
-//
-import colors from '../../styles/colors'
-import imagePath from '../../constants/imagePath'
-
-//components
-import Header from '../../Components/Header'
-
-import WrapperContainer from '../../Components/WrapperContainer'
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
+import { Image, Text, TouchableOpacity, View, } from 'react-native'
 import { AreaChart, Grid, BarChart, LineChart, PieChart} from 'react-native-svg-charts'
 import * as shape from 'd3-shape'
 import strings from '../../constants/lang'
 import styles from './styles'
+import imagePath from '../../constants/imagePath'
+import colors from '../../styles/colors'
 
+//components
+import Header from '../../Components/Header'
+import WrapperContainer from '../../Components/WrapperContainer'
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
-export default class Charts extends Component {
+export default class Statistics extends Component {
     state = {
             data: [50, 10, 40, 95, -4, -24, 85, 91, 35, 53, -53, 24, 50, -20, -80]     
     }
-
     
     randomColor = () => ('#' + ((Math.random() * 0xffffff) << 0).toString(16) + '000000').slice(0, 7)
     pieData = this.state.data
@@ -34,8 +28,6 @@ export default class Charts extends Component {
                },
                key: `pie-${index}`,
            }))
-
-
 
     render() {
         const { isLoading, userPosts } = this.state;

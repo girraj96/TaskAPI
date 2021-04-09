@@ -15,5 +15,8 @@ export default {
     YOUR_FEED:"Your Feed",
     FIND_NEARBY_FRIENDS:"Find near by friends",
     STATS:"Stats",
-    CHAT:"Chats"
+    CHAT:"Chats",
+    FACEBOOK:"Facebook",
+    GOOGLE:"Google",
+    COUNTRY_CODE:"+91"
 }

@@ -22,11 +22,6 @@ export default class Profile extends Component {
         searchTxts: "",
         
     }
-    _onLogout=()=>{
-        actions.onLogout();
-    }
-
-    
     _onSearch = (value) => {
         const {searchTxts}=this.state
         this.setState({
@@ -53,10 +48,8 @@ export default class Profile extends Component {
     }
 
     _findNearBy=()=>{
-
+            ///to be added
     }
-
-
     render() {
         const {isLoading,userPosts}= this.state;
         return (
@@ -68,7 +61,6 @@ export default class Profile extends Component {
                         {isLoading?<View style={styles.loaderView}><Loader isLoading={isLoading} size={"small"}/></View>: <Image source={imagePath.searchIcon} style={styles.searchIcon}/>}
                     </View>
              </Header>
-             
              <TouchableOpacity style={styles.nearByButtonView} onPress={this._findNearBy}>
                         <Image source={imagePath.location_nearby} style={styles.locationImg}/>
                         <Text>{strings.FIND_NEARBY_FRIENDS}</Text>
@@ -83,31 +75,6 @@ export default class Profile extends Component {
                         ListEmptyComponent={<ListEmptyComp isLoading={isLoading}/>}
                     />
                 </View>
-             {/* <KeyboardAwareScrollView style={{flex:1}}>
-             <AreaChart
-                style={{ height: 200 }}
-                data={this.state.data}
-                contentInset={{ top: 30, bottom: 30 }}
-                curve={shape.curveNatural}
-                svg={{ fill: 'rgba(134, 65, 244, 0.8)' }}
-            >
-                <Grid />
-            </AreaChart>
-            <BarChart style={{ height: 200 }} data={this.state.data}  svg={{ fill: 'rgba(134, 65, 244, 0.8)' }} contentInset={{ top: 30, bottom: 30 }}>
-                <Grid />
-            </BarChart>
-
-            <LineChart
-                style={{ height: 200 }}
-                data={this.state.data}
-                svg={{ stroke: 'rgb(134, 65, 244)' }}
-                contentInset={{ top: 20, bottom: 20 }}
-            >
-                <Grid />
-            </LineChart>
-            <PieChart style={{ height: 200 }} data={this.pieData}/>
-            
-             </KeyboardAwareScrollView> */}
          </WrapperContainer>
         )
     }

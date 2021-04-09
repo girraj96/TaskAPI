@@ -10,9 +10,8 @@ function setTopLevelNavigator(navigatorRef) {
 }
 
 export const navigate=(routeName, params) =>{
-	// alert(_navigator?.navigate)
 	navigationRef.current?.navigate(routeName,params);
-
+// alert(_navigator?.navigate)
 	// _navigator.dispatch(
 	// 	NavigationActions.navigate({
 	// 		routeName,

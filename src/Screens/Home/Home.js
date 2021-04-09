@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {Text, View,FlatList, RefreshControl, Image} from 'react-native'
+import { Text, View, FlatList, RefreshControl, Image } from 'react-native'
 import colors from '../../styles/colors'
 import styles from './styles'
 import actions from "../../redux/actions"
@@ -18,32 +18,32 @@ import socketServices from '../../utils/socketService'
 
 
 export default class Home extends Component {
-    state={
-        skipCount:0,
-        isLoading:false,
-        userPosts:[],
-        isRefreshing:false
-    }  
+    state = {
+        skipCount: 0,
+        isLoading: false,
+        userPosts: [],
+        isRefreshing: false
+    }
     componentDidMount() {
         this.setState({
-            isLoading:true
+            isLoading: true
         })
         this.getUserData();
-    }    
+    }
 
     getUserData = () => {
-        const {skipCount,userPosts}=this.state;
+        const { skipCount, userPosts } = this.state;
 
         actions.getUserSearch({
             searchType: "LEADERBOARD",
             limit: 6,
-            skip:skipCount
+            skip: skipCount
         })
             .then(response => {
                 this.setState({
-                    isLoading:false,
-                    isRefreshing:false,
-                    userPosts:[...userPosts,...response.data]
+                    isLoading: false,
+                    isRefreshing: false,
+                    userPosts: [...userPosts, ...response.data]
                 })
             }).catch((error) => {
                 showMessage({
@@ -52,53 +52,53 @@ export default class Home extends Component {
                     message: error.message
                 })
             });
-            
+
     }
 
-    handleRefresh=()=>{
+    handleRefresh = () => {
         this.setState({
-            isRefreshing:true
+            isRefreshing: true
         })
         this.getUserData();
     }
 
-    _onEndReached =async() => {
-        const{skipCount}=this.state;
-        
+    _onEndReached = async () => {
+        const { skipCount } = this.state;
+
         await this.setState({
-            skipCount:skipCount+6,
-            isLoading:true
+            skipCount: skipCount + 6,
+            isLoading: true
         })
         this.getUserData();
     }
 
     render() {
-        const {isLoading, userPosts,isRefreshing}=this.state;
-        const {navigation}=this.props;
+        const { isLoading, userPosts, isRefreshing } = this.state;
+        const { navigation } = this.props;
         return (
-           <WrapperContainer  statusBarColor={colors.themeColor}>
-               <Header bgColor={colors.white}>
-               <View style={styles.homeHeader}>
-                   <TouchableOpacity onPress={()=>navigation.openDrawer()}>
-                   <Image source={imagePath.drawer} style={styles.drawerIcon}/>
-                   </TouchableOpacity>
-                <Text style={styles.screenNameTxt}>{strings.YOUR_FEED}</Text>
-               </View>
-               </Header>
-               <FlatList
+            <WrapperContainer statusBarColor={colors.themeColor}>
+                <Header bgColor={colors.white}>
+                    <View style={styles.homeHeader}>
+                        <TouchableOpacity onPress={() => navigation.openDrawer()}>
+                            <Image source={imagePath.drawer} style={styles.drawerIcon} />
+                        </TouchableOpacity>
+                        <Text style={styles.screenNameTxt}>{strings.YOUR_FEED}</Text>
+                    </View>
+                </Header>
+                <FlatList
                     data={userPosts}
-               
-                    ListFooterComponent={()=><View style={{height:30}}><Loader isLoading={isLoading}/></View>}
+
+                    ListFooterComponent={() => <View style={{ height: 30 }}><Loader isLoading={isLoading} /></View>}
                     keyExtractor={(item, index) => index.toString()}
-                    renderItem={({item}) => <UserPosts data={item}/>}
+                    renderItem={({ item }) => <UserPosts data={item} />}
                     onEndReached={this._onEndReached}
                     showsVerticalScrollIndicator={false}
-                    onEndReachedThreshold={0.9}  
-                    refreshControl={<RefreshControl 
-                                        refreshing={isRefreshing}
-                                        onRefresh={this.handleRefresh}/>}    
+                    onEndReachedThreshold={0.9}
+                    refreshControl={<RefreshControl
+                        refreshing={isRefreshing}
+                        onRefresh={this.handleRefresh} />}
                 />
-           </WrapperContainer>
+            </WrapperContainer>
         )
     }
 }

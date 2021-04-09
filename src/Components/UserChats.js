@@ -1,6 +1,7 @@
 import React from 'react'
 import { View, Text,StyleSheet, Image} from 'react-native'
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import imagePath from '../constants/imagePath';
 import colors from '../styles/colors';
 import commonStyles from '../styles/commonStyles';
 
@@ -17,6 +18,7 @@ export default function UserChats(props) {
                </TouchableOpacity>
 
             </View>
+            <Image source={imagePath.green_dot}  style={{height:15, width:15}}/>
         </View>
     )
 }
