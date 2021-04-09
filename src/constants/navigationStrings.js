@@ -18,4 +18,14 @@ export default{
     MONTHLY:"monthly",
     VERIFY_OTP:"verifyOTP",
 
+    //BOTTOM TAB Routes
+    MONEY:"Money",
+    STATS:"Stats",
+    PROFILE_SCREEN:"Profile",
+    CHAT_SCREEN:"Chat",
+
+    // DRAWER TAB Routes
+    BOOKMARKS:"Bookmarks",
+    SETTING:"Settings",
+    SUPPORT:"Support"
 }

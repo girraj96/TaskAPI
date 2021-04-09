@@ -1,6 +1,5 @@
 import React from 'react'
 import {Image} from 'react-native'
-import { createStackNavigator } from "@react-navigation/stack";
 import {createBottomTabNavigator} from "@react-navigation/bottom-tabs";
 import navigationStrings from '../constants/navigationStrings';
 import TopRoutes from './TopRoutes';
@@ -18,7 +17,7 @@ function BottomRoutes() {
         }}
         >
             <BottomTab.Screen name={navigationStrings.TOP_ROUTES} component={TopRoutes} options={{
-                tabBarLabel: "Money",
+                tabBarLabel: navigationStrings.MONEY,
                 tabBarIcon: ({ focused, color, size }) => (
                     <Image source={imagePath.money}
                         style={{
@@ -30,7 +29,7 @@ function BottomRoutes() {
                 )
             }} />
             <BottomTab.Screen name={navigationStrings.STATISTICS} component={Statistics} options={{
-                tabBarLabel: "Stats",
+                tabBarLabel: navigationStrings.STATS,
 
                 tabBarIcon: ({ focused, color, size }) => (
                     <Image source={imagePath.stats}
@@ -44,7 +43,7 @@ function BottomRoutes() {
                 )
             }} />
             <BottomTab.Screen name={navigationStrings.PROFILE} component={Profile} options={{
-                tabBarLabel: "Profile",
+                tabBarLabel: navigationStrings.PROFILE_SCREEN,
                 tabBarIcon: ({ focused, color, size }) => (
                     <Image source={imagePath.user}
                         style={{
@@ -56,7 +55,7 @@ function BottomRoutes() {
                 )
             }} />
          <BottomTab.Screen name={navigationStrings.CHAT} component={Chat} options={{
-                tabBarLabel: "Chat",
+                tabBarLabel: navigationStrings.CHAT_SCREEN,
                 tabBarIcon: ({ focused, color, size }) => (
                     <Image source={imagePath.chat_icon}
                         style={{

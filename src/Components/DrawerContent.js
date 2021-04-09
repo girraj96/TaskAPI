@@ -37,14 +37,14 @@ export default function DrawerContent(props){
                             icon={({color, size}) => (
                                <Image source={imagePath.home} style={styles.drawericons}/>
                             )}
-                            label="Home"
+                            label={navigationStrings.HOME}
                             onPress={() => {navigation.navigate(navigationStrings.HOME)}}
                         />
                         <DrawerItem 
                             icon={({color, size}) => (
                               <Image source={imagePath.user_icon} style={styles.drawericons}/>
                             )}
-                            label="Stats"
+                            label={navigationStrings.STATS}
                             onPress={() => {navigation.navigate(navigationStrings.STATISTICS)}}
                         />
                         <DrawerItem 
@@ -53,21 +53,21 @@ export default function DrawerContent(props){
                               />
                             )}
                             onPress={()=>{navigation.navigate(navigationStrings.QR_CODE)}}
-                            label="Bookmarks"
+                            label={navigationStrings.BOOKMARKS}
                            
                         />
                         <DrawerItem 
                           icon={({color, size}) => (
                             <Image source={imagePath.settings_icon} style={styles.drawericons}/>
                         )}
-                            label="Settings"
+                            label={navigationStrings.SETTING}
                            
                         />
                         <DrawerItem 
                        icon={({color, size}) => (
                         <Image source={imagePath.support_icon} style={styles.drawericons}/>
                     )}
-                      label="Support"
+                      label={navigationStrings.SUPPORT}
                             
                         />
                     </Drawer.Section>
