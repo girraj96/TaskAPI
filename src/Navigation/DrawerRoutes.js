@@ -12,6 +12,7 @@ export default function DrawerRoutes() {
         <Drawer.Navigator initialRouteName={navigationStrings.Home}  drawerContent={props=><DrawerContent {...props}/>}>
             <Drawer.Screen name={navigationStrings.BOTTOM_ROUTES} component={BottomRoutes} ></Drawer.Screen>
             <Drawer.Screen name={navigationStrings.QR_CODE} component={QrCode} options={{headerShown:false}}/>
+            <Drawer.Screen name={navigationStrings.QR_CODE} component={QrCode} options={{headerShown:false}}/>
 
         </Drawer.Navigator>
     )
