@@ -9,6 +9,7 @@ import types from './src/redux/types'
 import {requestUserPermission, getBackgroundMsg} from "./src/utils/notificationServices";
 
 const { dispatch } = store;
+///changes for  commit
 
 export default class App extends Component {
   componentDidMount() {
